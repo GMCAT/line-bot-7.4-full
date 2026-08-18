@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: line-news-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: LINE_CHANNEL_ACCESS_TOKEN
+        sync: false
+      - key: LINE_CHANNEL_SECRET
+        sync: false
+      - key: AI_PROVIDER
+        value: "gemini"
+      - key: BOT_SERVICES
+        value: "news,stocks,ai_chat,contacts,subscriptions,admin,settings"
+      - key: LOCAL_AI_BASE_URL
+        sync: false
+      - key: LOCAL_AI_MODEL
+        value: "gemma-4-31b-it"
+      - key: LOCAL_AI_API_KEY
+        value: "ollama"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: "gemini-3.6-flash"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_SSLMODE
+        value: "require"
+      - key: LINE_ADMIN_USER_IDS
+        sync: false
+      - key: DAILY_DIGEST_HOUR
+        value: "8"
+      - key: DAILY_DIGEST_MINUTE
+        value: "0"
+      - key: STORAGE_FILE
+        value: "data/storage.json"
+      - key: GROUP_TRIGGER_KEYWORDS
+        value: "บอท,bot,!"
